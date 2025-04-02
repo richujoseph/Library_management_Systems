@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { BookOpen, FileText, PieChart, BarChartIcon } from "lucide-react"
-import { getOverdueBooks, sendReminder } from "@/app/actions/transaction-actions"
+//import { getOverdueBooks, sendReminder } from "@/app/actions/transaction-actions"
 
 import { Button } from "@/Component/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/Component/ui/card"
@@ -34,8 +34,8 @@ export default function ReportsPage() {
   useEffect(() => {
     async function loadOverdueBooks() {
       try {
-        const data = await getOverdueBooks()
-        setOverdueBooks(data)
+ //       const data = await getOverdueBooks()
+    //    setOverdueBooks(data)
       } catch (error) {
         console.error("Failed to load overdue books:", error)
         toast({
@@ -53,20 +53,20 @@ export default function ReportsPage() {
 
   async function handleSendReminder(id: number) {
     try {
-      const result = await sendReminder(id)
+      // const result = await sendReminder(id)
 
-      if (result.success) {
-        toast({
-          title: "Success",
-          description: result.message,
-        })
-      } else {
-        toast({
-          title: "Error",
-          description: result.message,
-          variant: "destructive",
-        })
-      }
+      // if (result.success) {
+      //   toast({
+      //     title: "Success",
+      //     description: result.message,
+      //   })
+      // } else {
+      //   toast({
+      //     title: "Error",
+      //     description: result.message,
+      //     variant: "destructive",
+      //   })
+      // }
     } catch (error) {
       toast({
         title: "Error",

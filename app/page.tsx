@@ -1,11 +1,16 @@
+"use client"
 import Link from "next/link"
 import { BookOpen, Users, Clock, BookMarked } from "lucide-react"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/Component/ui/card"
 import { Overview } from "@/Component/overview"
 import { RecentBorrows } from "@/Component/recent-borrows"
+import {Button} from "@/Component/ui/button"
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation"
 
 export default function Dashboard() {
+  const router = useRouter();
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background px-6">
@@ -13,7 +18,7 @@ export default function Dashboard() {
           <BookOpen className="h-6 w-6" />
           <span>Library Management System</span>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
+        <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
           <Link href="/books" className="text-sm font-medium text-muted-foreground hover:text-foreground">
             Books
           </Link>
@@ -26,6 +31,9 @@ export default function Dashboard() {
           <Link href="/reports" className="text-sm font-medium text-muted-foreground hover:text-foreground">
             Reports
           </Link>
+          <Button size="sm" onClick={()=>{Cookies.remove("token");Cookies.remove("userId");router.push("/auth/login")}}>
+            Logout
+          </Button>
         </nav>
       </header>
       <main className="flex-1 p-6 md:p-8 lg:p-10">
